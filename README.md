@@ -1,9 +1,9 @@
-# snap-json
+# snap-json-llm
 
 > **Force any LLM to return strictly valid JSON.** One tiny API for OpenAI (GPT-4o), Anthropic Claude, and Google Gemini structured outputs — with streaming partial objects, automatic JSON repair, and self-healing retries. Zero dependencies. No Zod required.
 
 ```bash
-npm install snap-json
+npm install snap-json-llm
 ```
 
 **The problem:** LLMs wrap JSON in markdown fences, cut it off mid-string, miss commas, invent keys, and return `"36"` when you asked for a number.
@@ -11,7 +11,7 @@ npm install snap-json
 **The fix:** snap-json constrains the generation *and* guarantees the result — you get a typed object matching your schema, or a typed error. Never malformed output.
 
 ```ts
-import { SnapJson } from 'snap-json';
+import { SnapJson } from 'snap-json-llm';
 
 const client = new SnapJson({ apiKeys: { openai: process.env.OPENAI_API_KEY } });
 
@@ -54,7 +54,7 @@ const person = await client.extract<{ name: string; age: number }>(
 ## Quick start
 
 ```ts
-import { SnapJson } from 'snap-json';
+import { SnapJson } from 'snap-json-llm';
 
 const client = new SnapJson({
   apiKeys: {
@@ -234,7 +234,7 @@ healing: {
 Everything throws `SnapJsonError` — one type to catch, with structured fields:
 
 ```ts
-import { SnapJson, SnapJsonError } from 'snap-json';
+import { SnapJson, SnapJsonError } from 'snap-json-llm';
 
 try {
   const data = await client.extract<Order>(text, options);
@@ -265,7 +265,7 @@ import {
   validatePayload,      // (value, schema) => ValidationIssue[]
   healPayload,          // (brokenJson, errorMsg, fallbackClient) => fixed value
   pruneUnknownKeys,     // free local cleanup of forbidden keys
-} from 'snap-json';
+} from 'snap-json-llm';
 
 repairJson('{"items": [1, 2');          // → '{"items": [1, 2]}'
 repairJson('```json\n{"a": 1}\n```');   // → '{"a": 1}'

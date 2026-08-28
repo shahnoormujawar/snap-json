@@ -1,5 +1,5 @@
 {
-  "name": "snap-json",
+  "name": "snap-json-llm",
   "version": "0.1.0",
   "description": "Structured outputs for LLMs: force OpenAI, Anthropic Claude & Google Gemini to return valid JSON matching your schema. Zero-dependency Instructor alternative with JSON Schema enforcement, streaming partial JSON parsing, auto-repair & self-healing retries. No Zod required.",
   "type": "module",
